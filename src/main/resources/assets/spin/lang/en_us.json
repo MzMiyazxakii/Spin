@@ -1,0 +1,12 @@
+{
+  "item.spin.steel_ball":"Steel Ball",
+  "key.categories.spin":"Spin",
+  "key.spin.charge":"Charge Spin",
+  "key.spin.punch":"Spin-Imbued Punch",
+  "key.spin.fast_ball":"Fast Ball",
+  "key.spin.curveball":"Curveball",
+  "key.spin.bouncy_ball":"Bouncy Ball",
+  "key.spin.drill_throw":"Drill Throw",
+  "tooltip.spin.steel_ball":"Hold right-click to charge, release to throw.",
+  "tooltip.spin.steel_ball.spin":"Crouch while releasing to perform a Drill Throw."
+}

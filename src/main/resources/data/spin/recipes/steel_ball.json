@@ -1,0 +1,6 @@
+{
+  "type":"minecraft:crafting_shaped",
+  "pattern":[" I ","IRI"," I "],
+  "key":{"I":{"item":"minecraft:iron_ingot"},"R":{"item":"minecraft:iron_nugget"}},
+  "result":{"item":"spin:steel_ball","count":1}
+}

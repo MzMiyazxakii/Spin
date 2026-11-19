@@ -1,0 +1,12 @@
+{
+  "item.spin.steel_ball":"Стальной шар",
+  "key.categories.spin":"SPIN",
+  "key.spin.charge":"Зарядить SPIN",
+  "key.spin.punch":"Удар, усиленный SPIN",
+  "key.spin.fast_ball":"Быстрый шар",
+  "key.spin.curveball":"Кривой бросок",
+  "key.spin.bouncy_ball":"Рикошетящий шар",
+  "key.spin.drill_throw":"Буровой бросок",
+  "tooltip.spin.steel_ball":"Зажмите ПКМ для зарядки, отпустите для броска.",
+  "tooltip.spin.steel_ball.spin":"Присядьте во время отпускания, чтобы выполнить буровой бросок."
+}
