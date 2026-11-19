@@ -1,11 +1,12 @@
 package com.mzmiyazxakii.spin;
 
-import com.mzmiyazxakii.spin.client.VerityClientState;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
@@ -25,7 +26,8 @@ public final class StandNetwork {
                 (packet, buffer) -> buffer.writeBoolean(packet.unlocked),
                 buffer -> new UnlockPacket(buffer.readBoolean()),
                 (packet, context) -> {
-                    context.get().enqueueWork(() -> VerityClientState.setUnlocked(packet.unlocked));
+                    context.get().enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT,
+                            () -> () -> com.mzmiyazxakii.spin.client.VerityClientState.setUnlocked(packet.unlocked)));
                     context.get().setPacketHandled(true);
                 });
     }
