@@ -9,8 +9,11 @@
   "key.spin.open_skins": "Open skin menu",
   "key.categories.spin": "SPIN",
   "item.spin.stand_arrow": "Stand Arrow",
+  "item.spin.soul_disc": "Soul Disc",
   "message.spin.verity_awakened": "Verity has awakened! Press U to summon it.",
   "message.spin.verity_awakening": "The arrow is awakening your Stand... Hold still!",
   "message.spin.verity_already_owned": "You already own Verity.",
+  "message.spin.soul_disc_used": "The Soul Disc has taken your Stand.",
+  "message.spin.soul_disc_no_stand": "You don't have a Stand to remove.",
   "key.spin.toggle_verity": "Show / hide Verity"
 }

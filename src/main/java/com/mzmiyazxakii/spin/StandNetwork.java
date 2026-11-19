@@ -33,14 +33,17 @@ public final class StandNetwork {
     }
 
     public static void syncUnlocked(ServerPlayer player) {
-        CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new UnlockPacket(true));
+        syncUnlocked(player, true);
+    }
+
+    public static void syncUnlocked(ServerPlayer player, boolean unlocked) {
+        CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new UnlockPacket(unlocked));
     }
 
     @SubscribeEvent
     public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player
-                && player.getPersistentData().getBoolean("SpinHasVerity")) {
-            syncUnlocked(player);
+        if (event.getEntity() instanceof ServerPlayer player) {
+            syncUnlocked(player, player.getPersistentData().getBoolean("SpinHasVerity"));
         }
     }
 

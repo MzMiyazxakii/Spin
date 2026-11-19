@@ -30,6 +30,8 @@ public class SpinMod {
             () -> new SteelBallItem(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> STAND_ARROW = ITEMS.register("stand_arrow",
             () -> new StandArrowItem(new Item.Properties().stacksTo(16).rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> SOUL_DISC = ITEMS.register("soul_disc",
+            () -> new SoulDiscItem(new Item.Properties().stacksTo(16).rarity(Rarity.EPIC)));
     public static final RegistryObject<EntityType<SteelBallProjectile>> STEEL_BALL_PROJECTILE =
             ENTITIES.register("steel_ball",
                     () -> EntityType.Builder.<SteelBallProjectile>of(SteelBallProjectile::new, MobCategory.MISC)
@@ -62,6 +64,7 @@ public class SpinMod {
                 || event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(STEEL_BALL);
             event.accept(STAND_ARROW);
+            event.accept(SOUL_DISC);
         }
     }
 }
