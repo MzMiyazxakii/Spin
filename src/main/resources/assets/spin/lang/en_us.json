@@ -10,6 +10,7 @@
   "key.categories.spin": "SPIN",
   "item.spin.stand_arrow": "Stand Arrow",
   "message.spin.verity_awakened": "Verity has awakened! Press U to summon it.",
+  "message.spin.verity_awakening": "The arrow is awakening your Stand... Hold still!",
   "message.spin.verity_already_owned": "You already own Verity.",
   "key.spin.toggle_verity": "Show / hide Verity"
 }

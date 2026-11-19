@@ -10,6 +10,7 @@
   "key.categories.spin": "SPIN",
   "item.spin.stand_arrow": "Стенд-стрела",
   "message.spin.verity_awakened": "Стенд Верити пробудился! Нажми U, чтобы призвать его.",
+  "message.spin.verity_awakening": "Стрела пробуждает стенд... Не двигайся!",
   "message.spin.verity_already_owned": "Верити уже принадлежит тебе.",
   "key.spin.toggle_verity": "Показать / скрыть Верити"
 }
