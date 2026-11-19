@@ -71,7 +71,7 @@ public class SpinClientEvents {
     public static void registerVerityHud(RegisterGuiOverlaysEvent event) {
         event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "verity_name", (gui, graphics, partialTick, screenWidth, screenHeight) -> {
             Minecraft minecraft = Minecraft.getInstance();
-            if (minecraft.player == null || minecraft.options.hideGui || !VerityClientState.isVisible()) return;
+            if (minecraft.player == null || minecraft.options.hideGui || !VerityClientState.isUnlocked()) return;
             graphics.drawString(minecraft.font, Component.literal("VERITY"), 8, 8, 0xFFFFD52E, true);
         });
     }
