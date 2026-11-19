@@ -20,6 +20,7 @@ public final class VerityKeyHandler {
     public static void clientTick(TickEvent.ClientTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
         Minecraft minecraft = Minecraft.getInstance();
+        VerityClientState.clientTick();
         while (TOGGLE_VERITY.consumeClick()) {
             if (minecraft.player != null && minecraft.screen == null) {
                 VerityClientState.toggleVisible();
