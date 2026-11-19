@@ -84,6 +84,9 @@ public final class SpinNetwork {
         ItemStack held = player.getMainHandItem();
         if (!held.is(SpinMod.STEEL_BALL.get())) held = player.getOffhandItem();
         if (!held.is(SpinMod.STEEL_BALL.get())) return;
+        if (player.isCrouching() && mode == SteelBallProjectile.Mode.NORMAL) mode = SteelBallProjectile.Mode.DRILL;
+        if (player.isCrouching() && mode == SteelBallProjectile.Mode.FAST) { mode = SteelBallProjectile.Mode.DRILL_FAST; speed = 2.4F; }
+        if (player.isCrouching() && mode == SteelBallProjectile.Mode.CURVE) { mode = SteelBallProjectile.Mode.DRILL_CURVE; speed = 1.8F; }
         if (!player.getAbilities().instabuild) held.shrink(1);
         SteelBallProjectile ball = new SteelBallProjectile(player.level(), player);
         ball.setItem(new ItemStack(SpinMod.STEEL_BALL.get())); ball.setMode(mode);
