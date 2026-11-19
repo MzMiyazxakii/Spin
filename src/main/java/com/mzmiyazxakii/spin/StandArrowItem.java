@@ -1,7 +1,6 @@
 package com.mzmiyazxakii.spin;
 
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -31,14 +30,10 @@ public final class StandArrowItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
-            if (serverPlayer.getPersistentData().getBoolean("SpinHasVerity")) {
-                player.displayClientMessage(Component.translatable("message.spin.verity_already_owned"), true);
-            } else if (AWAKENING.containsKey(player.getUUID())) {
-                player.displayClientMessage(Component.translatable("message.spin.verity_awakening"), true);
-            } else {
+            if (!serverPlayer.getPersistentData().getBoolean("SpinHasVerity")
+                    && !AWAKENING.containsKey(player.getUUID())) {
                 AWAKENING.put(player.getUUID(), AWAKENING_TICKS);
                 if (!player.getAbilities().instabuild) stack.shrink(1);
-                player.displayClientMessage(Component.translatable("message.spin.verity_awakening"), true);
                 level.playSound(null, player.blockPosition(), SoundEvents.END_PORTAL_FRAME_FILL,
                         SoundSource.PLAYERS, 0.8F, 0.8F);
             }
@@ -63,7 +58,6 @@ public final class StandArrowItem extends Item {
                     StandNetwork.syncUnlocked(player);
                     level.playSound(null, player.blockPosition(), SoundEvents.PLAYER_LEVELUP,
                             SoundSource.PLAYERS, 0.9F, 1.25F);
-                    player.displayClientMessage(Component.translatable("message.spin.verity_awakened"), true);
                 } else {
                     AWAKENING.put(id, remaining - 1);
                 }

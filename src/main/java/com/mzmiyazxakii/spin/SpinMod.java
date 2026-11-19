@@ -30,6 +30,8 @@ public class SpinMod {
             () -> new SteelBallItem(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> STAND_ARROW = ITEMS.register("stand_arrow",
             () -> new StandArrowItem(new Item.Properties().stacksTo(16).rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> SOUL_DISC = ITEMS.register("soul_disc",
+            () -> new SoulDiscItem(new Item.Properties().stacksTo(16).rarity(Rarity.EPIC)));
     public static final RegistryObject<EntityType<SteelBallProjectile>> STEEL_BALL_PROJECTILE =
             ENTITIES.register("steel_ball",
                     () -> EntityType.Builder.<SteelBallProjectile>of(SteelBallProjectile::new, MobCategory.MISC)
@@ -37,6 +39,13 @@ public class SpinMod {
                             .clientTrackingRange(8)
                             .updateInterval(1)
                             .build(new ResourceLocation(MOD_ID, "steel_ball").toString()));
+    public static final RegistryObject<EntityType<VerityTearProjectile>> VERITY_TEAR_PROJECTILE =
+            ENTITIES.register("verity_tear",
+                    () -> EntityType.Builder.<VerityTearProjectile>of(VerityTearProjectile::new, MobCategory.MISC)
+                            .sized(0.3F, 0.3F)
+                            .clientTrackingRange(8)
+                            .updateInterval(1)
+                            .build(new ResourceLocation(MOD_ID, "verity_tear").toString()));
 
     public static final RegistryObject<SoundEvent> CHARGE = sound("charge");
     public static final RegistryObject<SoundEvent> THROW = sound("spin_throw");
@@ -62,6 +71,7 @@ public class SpinMod {
                 || event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(STEEL_BALL);
             event.accept(STAND_ARROW);
+            event.accept(SOUL_DISC);
         }
     }
 }

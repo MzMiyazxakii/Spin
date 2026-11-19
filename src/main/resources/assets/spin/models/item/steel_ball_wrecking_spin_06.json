@@ -1,0 +1,6 @@
+{
+  "parent": "spin:item/steel_ball_spin_06",
+  "textures": {
+    "0": "spin:item/wrecking_ball"
+  }
+}
