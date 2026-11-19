@@ -1,1 +1,1 @@
-{"parent":"minecraft:item/generated","textures":{"layer0":"spin:item/wrecking_ball"}}
+{"parent":"spin:item/steel_ball","textures":{"0":"spin:item/wrecking_ball"}}
