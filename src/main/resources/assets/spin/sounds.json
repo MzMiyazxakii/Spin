@@ -1,14 +1,23 @@
 {
-  "charge":{"sounds":[{"name":"spin:specs/spin/charge"}]},
-  "charge_loop":{"sounds":[{"name":"spin:specs/spin/charge_loop","stream":false}]},
-  "spin_imbued_punch":{"sounds":[{"name":"spin:specs/spin/spin_imbued_punch"}]},
-  "spin_imbued_punch_hit":{"sounds":[{"name":"spin:specs/spin/spin_imbued_punch_hit"}]},
-  "spin_throw":{"sounds":[{"name":"spin:specs/spin/throw"}]},
-  "spin_fast_ball":{"sounds":[{"name":"spin:specs/spin/fast_ball"}]},
-  "spin_curveball":{"sounds":[{"name":"spin:specs/spin/curveball"}]},
-  "spin_bouncy_ball":{"sounds":[{"name":"spin:specs/spin/bouncy_ball"}]},
-  "spin_drill":{"sounds":[{"name":"spin:specs/spin/drill"}]},
-  "steel_ball_hit":{"sounds":[{"name":"spin:specs/spin/throw"}]},
-  "catch":{"sounds":[{"name":"spin:specs/spin/catch"}]},
-  "spec_change":{"sounds":[{"name":"spin:specs/spin/spec_change"}]}
+  "charge": {
+    "sounds": [
+      {
+        "name": "spin:specs/spin/charge"
+      }
+    ]
+  },
+  "spin_throw": {
+    "sounds": [
+      {
+        "name": "spin:specs/spin/throw"
+      }
+    ]
+  },
+  "catch": {
+    "sounds": [
+      {
+        "name": "spin:specs/spin/catch"
+      }
+    ]
+  }
 }
