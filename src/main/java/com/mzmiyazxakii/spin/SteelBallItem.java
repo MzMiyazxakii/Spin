@@ -58,7 +58,7 @@ public class SteelBallItem extends Item {
         float power = getChargeProgress(used);
 
         SteelBallProjectile ball = new SteelBallProjectile(level, player);
-        ball.setItem(new ItemStack(this));
+        ball.setItem(stack.copyWithCount(1));
         // A full two-second charge gives the ball more damage and a noticeably longer flight.
         ball.setDamage(3.0F + power * 5.0F);
         float launchSpeed = 1.25F + power * 1.25F;
