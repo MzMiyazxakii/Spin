@@ -157,7 +157,11 @@ public class SteelBallProjectile extends ThrowableItemProjectile {
         itemReturnedToOwner = true;
 
         if (owner instanceof Player player) {
-            ItemStack returned = new ItemStack(SpinMod.STEEL_BALL.get(), 1);
+            // Return the exact projectile stack so its selected skin NBT is preserved.
+            ItemStack projectileStack = getItem();
+            ItemStack returned = projectileStack.is(SpinMod.STEEL_BALL.get())
+                    ? projectileStack.copyWithCount(1)
+                    : new ItemStack(SpinMod.STEEL_BALL.get(), 1);
             if (!player.getInventory().add(returned)) {
                 player.drop(returned, false);
             }
