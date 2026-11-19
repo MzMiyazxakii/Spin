@@ -1,1 +1,16 @@
-{"item.spin.steel_ball":"Steel Ball","tooltip.spin.steel_ball":"Hold right-click for up to 2 seconds to charge SPIN. A fuller charge throws farther and hits harder.","item.spin.skin.wrecking_ball":"Wrecking Ball","screen.spin.skins.title":"SPIN Skins","screen.spin.skins.subtitle":"Choose your Steel Ball appearance","screen.spin.skins.default":"Default","screen.spin.skins.wrecking_ball":"Wrecking Ball","key.spin.open_skins":"Open skin menu","key.categories.spin":"SPIN"}
+{
+  "item.spin.steel_ball": "Steel Ball",
+  "tooltip.spin.steel_ball": "Hold right-click for up to 2 seconds to charge SPIN. A fuller charge throws farther and hits harder.",
+  "item.spin.skin.wrecking_ball": "Wrecking Ball",
+  "screen.spin.skins.title": "SPIN Skins",
+  "screen.spin.skins.subtitle": "Choose your Steel Ball appearance",
+  "screen.spin.skins.default": "Default",
+  "screen.spin.skins.wrecking_ball": "Wrecking Ball",
+  "key.spin.open_skins": "Open skin menu",
+  "key.categories.spin": "SPIN",
+  "item.spin.stand_arrow": "Stand Arrow",
+  "message.spin.verity_awakened": "Verity has awakened! Press U to summon it.",
+  "message.spin.verity_awakening": "The arrow is awakening your Stand... Hold still!",
+  "message.spin.verity_already_owned": "You already own Verity.",
+  "key.spin.toggle_verity": "Show / hide Verity"
+}

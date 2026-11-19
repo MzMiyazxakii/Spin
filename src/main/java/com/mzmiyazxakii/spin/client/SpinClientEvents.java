@@ -24,7 +24,7 @@ public class SpinClientEvents {
     private static final int CHARGE_SPIN_STEPS = 12;
 
     @SubscribeEvent
-    public static void registerKeys(RegisterKeyMappingsEvent event) { event.register(SpinSkinKeyHandler.OPEN_SKINS); }
+    public static void registerKeys(RegisterKeyMappingsEvent event) { event.register(SpinSkinKeyHandler.OPEN_SKINS); event.register(VerityKeyHandler.TOGGLE_VERITY); }
 
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
@@ -64,6 +64,15 @@ public class SpinClientEvents {
             }
             graphics.drawString(minecraft.font, Component.literal("SPIN  " + percent + "%"),
                     x + 5, y + 2, 0xFFFFE6A0, false);
+        });
+    }
+
+    @SubscribeEvent
+    public static void registerVerityHud(RegisterGuiOverlaysEvent event) {
+        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "verity_name", (gui, graphics, partialTick, screenWidth, screenHeight) -> {
+            Minecraft minecraft = Minecraft.getInstance();
+            if (minecraft.player == null || minecraft.options.hideGui || !VerityClientState.isUnlocked()) return;
+            graphics.drawString(minecraft.font, Component.literal("VERITY"), 8, 8, 0xFFFFD52E, true);
         });
     }
 
