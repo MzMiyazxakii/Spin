@@ -24,7 +24,7 @@ public class SpinClientEvents {
     private static final int CHARGE_SPIN_STEPS = 12;
 
     @SubscribeEvent
-    public static void registerKeys(RegisterKeyMappingsEvent event) { event.register(SpinSkinKeyHandler.OPEN_SKINS); event.register(VerityKeyHandler.TOGGLE_VERITY); }
+    public static void registerKeys(RegisterKeyMappingsEvent event) { event.register(SpinSkinKeyHandler.OPEN_SKINS); event.register(VerityKeyHandler.TOGGLE_VERITY); event.register(VerityKeyHandler.STRIKE); }
 
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
