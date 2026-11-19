@@ -1,0 +1,27 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+version = '1.0.0'
+group = 'com.mzmiyazxakii.spin'
+base { archivesName = 'Spin' }
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    copyIdeResources = true
+    runs {
+        configureEach { workingDirectory project.file('run'); property 'forge.logging.console.level', 'debug'; mods { spin { source sourceSets.main } } }
+        client {}
+        server { args '--nogui' }
+    }
+}
+repositories { }
+dependencies { minecraft 'net.minecraftforge:forge:1.20.1-47.2.0' }
+tasks.named('processResources', ProcessResources).configure {
+    def props = [mod_id:'spin', mod_name:'Spin', mod_version:project.version, mod_authors:'MzMiyazxakii', mod_description:'Standalone Spin abilities and Steel Ball for Minecraft Forge 1.20.1.']
+    inputs.properties props
+    filesMatching(['META-INF/mods.toml']) { expand props }
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
