@@ -21,8 +21,7 @@ public final class VerityRenderer {
     @SubscribeEvent
     public static void renderVerity(RenderPlayerEvent.Post event) {
         Minecraft minecraft = Minecraft.getInstance();
-        if (minecraft.player == null || event.getEntity() != minecraft.player
-                || minecraft.level == null || !VerityClientState.isVisible()) return;
+        if (minecraft.level == null || !VerityClientState.isVisible()) return;
 
         float partialTick = event.getPartialTick();
         float progress = VerityClientState.getSummonProgress(partialTick);
