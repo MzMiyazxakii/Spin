@@ -451,6 +451,89 @@
   "overrides": [
     {
       "predicate": {
+        "custom_model_data": 1,
+        "spin:charge_spin": 0.08333333333333333
+      },
+      "model": "spin:item/steel_ball_wrecking_spin_01"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1,
+        "spin:charge_spin": 0.16666666666666666
+      },
+      "model": "spin:item/steel_ball_wrecking_spin_02"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1,
+        "spin:charge_spin": 0.25
+      },
+      "model": "spin:item/steel_ball_wrecking_spin_03"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1,
+        "spin:charge_spin": 0.3333333333333333
+      },
+      "model": "spin:item/steel_ball_wrecking_spin_04"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1,
+        "spin:charge_spin": 0.4166666666666667
+      },
+      "model": "spin:item/steel_ball_wrecking_spin_05"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1,
+        "spin:charge_spin": 0.5
+      },
+      "model": "spin:item/steel_ball_wrecking_spin_06"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1,
+        "spin:charge_spin": 0.5833333333333334
+      },
+      "model": "spin:item/steel_ball_wrecking_spin_07"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1,
+        "spin:charge_spin": 0.6666666666666666
+      },
+      "model": "spin:item/steel_ball_wrecking_spin_08"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1,
+        "spin:charge_spin": 0.75
+      },
+      "model": "spin:item/steel_ball_wrecking_spin_09"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1,
+        "spin:charge_spin": 0.8333333333333334
+      },
+      "model": "spin:item/steel_ball_wrecking_spin_10"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1,
+        "spin:charge_spin": 0.9166666666666666
+      },
+      "model": "spin:item/steel_ball_wrecking_spin_11"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1
+      },
+      "model": "spin:item/wrecking_ball"
+    },
+    {
+      "predicate": {
         "spin:charge_spin": 0.08333333333333333
       },
       "model": "spin:item/steel_ball_spin_01"
@@ -514,12 +597,6 @@
         "spin:charge_spin": 0.9166666666666666
       },
       "model": "spin:item/steel_ball_spin_11"
-    },
-    {
-      "predicate": {
-        "custom_model_data": 1
-      },
-      "model": "spin:item/wrecking_ball"
     }
   ]
 }
