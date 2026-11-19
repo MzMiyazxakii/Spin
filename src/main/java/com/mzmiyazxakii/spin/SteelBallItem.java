@@ -15,6 +15,12 @@ import net.minecraft.world.level.Level;
 import java.util.List;
 
 public class SteelBallItem extends Item {
+    public static final int FULL_CHARGE_TICKS = 40;
+
+    public static float getChargeProgress(int ticksUsingItem) {
+        return Math.min(1.0F, Math.max(0.0F, ticksUsingItem / (float) FULL_CHARGE_TICKS));
+    }
+
     public SteelBallItem(Properties properties) {
         super(properties);
     }
@@ -49,13 +55,15 @@ public class SteelBallItem extends Item {
         if (!(living instanceof Player player) || level.isClientSide) return;
 
         int used = getUseDuration(stack) - timeLeft;
-        float power = Math.min(1.0F, used / 40.0F);
+        float power = getChargeProgress(used);
 
         SteelBallProjectile ball = new SteelBallProjectile(level, player);
         ball.setItem(new ItemStack(this));
-        ball.setDamage(3.0F + power * 4.0F);
+        // A full two-second charge gives the ball more damage and a noticeably longer flight.
+        ball.setDamage(3.0F + power * 5.0F);
+        float launchSpeed = 1.25F + power * 1.25F;
         ball.shootFromRotation(player, player.getXRot(), player.getYRot(),
-                0.0F, 1.25F + power, 0.0F);
+                0.0F, launchSpeed, 0.0F);
         level.addFreshEntity(ball);
 
         level.playSound(null, player.blockPosition(), SpinMod.THROW.get(),
