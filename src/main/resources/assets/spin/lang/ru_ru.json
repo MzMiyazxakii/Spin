@@ -10,9 +10,6 @@
   "key.categories.spin": "SPIN",
   "item.spin.stand_arrow": "Стенд-стрела",
   "item.spin.soul_disc": "Диск души",
-  "message.spin.verity_awakened": "Стенд Верити пробудился! Нажми U, чтобы призвать его.",
-  "message.spin.verity_awakening": "Стрела пробуждает стенд... Не двигайся!",
-  "message.spin.verity_already_owned": "Верити уже принадлежит тебе.",
   "message.spin.soul_disc_used": "Диск души забрал твой стенд.",
   "message.spin.soul_disc_no_stand": "У тебя нет стенда, который можно забрать.",
   "key.spin.toggle_verity": "Показать / скрыть Верити"
