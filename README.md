@@ -9,13 +9,16 @@ Standalone Forge mod port based on the supplied Spin 1.1.2 archive. The project 
 
 ## Current Steel Ball behavior
 - Hold right-click to charge the Steel Ball, then release to throw it.
+- The SPIN gauge appears in the lower-left corner while charging and fills over two seconds.
+- A longer charge increases both throw speed/range and damage.
 - The held Steel Ball rotates while it is being charged.
 - The thrown Steel Ball leaves an orbiting green particle effect and spins along its flight direction.
-- The ball follows a higher arc, damages the first living entity it hits, then returns exactly one Steel Ball to its owner.
+- The ball gets subtle aim assistance when its path narrowly misses a living target; this is limited to targets already very close to its flight path.
+- The ball damages the first living entity it hits, then returns exactly one Steel Ball to its owner.
 - Throwing consumes one Steel Ball in all game modes, including Creative.
 
 ## Temporarily disabled
-Separate keyboard abilities and the prototype SPIN meter actions have been removed for now. They can be reintroduced individually when their behavior is specified.
+Separate keyboard abilities and prototype SPIN ability actions remain disabled. The SPIN gauge is used only to display Steel Ball charge and does not activate other abilities.
 
 ## Build
 The GitHub Actions workflow builds with JDK 17 and Gradle 8.8. The JAR is uploaded as the Spin-Forge-1.20.1 workflow artifact after a successful run. For local builds, install JDK 17 and Gradle 8.8, then run `gradle build`.
