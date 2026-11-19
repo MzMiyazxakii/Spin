@@ -12,5 +12,6 @@
   "item.spin.soul_disc": "Диск души",
   "message.spin.soul_disc_used": "Диск души забрал твой стенд.",
   "message.spin.soul_disc_no_stand": "У тебя нет стенда, который можно забрать.",
-  "key.spin.toggle_verity": "Показать / скрыть Верити"
+  "key.spin.toggle_verity": "Показать / скрыть Верити",
+  "key.spin.verity_strike": "Верити: Strike"
 }
