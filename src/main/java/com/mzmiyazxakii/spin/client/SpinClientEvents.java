@@ -5,6 +5,7 @@ import com.mzmiyazxakii.spin.SteelBallItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
@@ -79,5 +80,6 @@ public class SpinClientEvents {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(SpinMod.STEEL_BALL_PROJECTILE.get(), SteelBallRenderer::new);
+        event.registerEntityRenderer(SpinMod.VERITY_TEAR_PROJECTILE.get(), context -> new ThrownItemRenderer<>(context, 1.2F, true));
     }
 }
