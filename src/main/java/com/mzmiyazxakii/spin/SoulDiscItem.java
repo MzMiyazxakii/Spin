@@ -38,7 +38,7 @@ public final class SoulDiscItem extends Item {
                 stack.shrink(1);
             }
 
-            level.playSound(null, serverPlayer.blockPosition(), SoundEvents.RESPAWN_ANCHOR_DEPLETE,
+            level.playSound(null, serverPlayer.blockPosition(), SoundEvents.RESPAWN_ANCHOR_DEPLETE.value(),
                     SoundSource.PLAYERS, 0.8F, 0.75F);
             serverPlayer.displayClientMessage(
                     Component.translatable("message.spin.soul_disc_used"), true);
