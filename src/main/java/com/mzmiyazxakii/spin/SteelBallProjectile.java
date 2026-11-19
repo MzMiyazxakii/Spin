@@ -18,6 +18,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
+import com.mzmiyazxakii.spin.network.SpinNetwork;
 
 public class SteelBallProjectile extends ThrowableItemProjectile {
     public enum Mode { NORMAL, FAST, CURVE, BOUNCY, DRILL }
@@ -58,7 +59,7 @@ public class SteelBallProjectile extends ThrowableItemProjectile {
                 }
                 discard(); return;
             }
-            setNoPhysics(true);
+            noPhysics = true;
             setDeltaMovement(delta.normalize().scale(Math.min(1.45, 0.45 + returnTicks * 0.035)));
             hasImpulse = true;
         }
