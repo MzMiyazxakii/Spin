@@ -50,6 +50,7 @@ public class SpinMod {
         ITEMS.register(modBus);
         ENTITIES.register(modBus);
         SOUNDS.register(modBus);
+        SpinSkinNetwork.register();
         modBus.addListener(this::addCreative);
     }
 

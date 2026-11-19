@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraft.resources.ResourceLocation;
@@ -21,6 +22,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 )
 public class SpinClientEvents {
     private static final int CHARGE_SPIN_STEPS = 12;
+
+    @SubscribeEvent
+    public static void registerKeys(RegisterKeyMappingsEvent event) { event.register(SpinSkinKeyHandler.OPEN_SKINS); }
 
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {

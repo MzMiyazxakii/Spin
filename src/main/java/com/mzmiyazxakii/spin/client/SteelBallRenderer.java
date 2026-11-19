@@ -3,6 +3,7 @@ package com.mzmiyazxakii.spin.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.mzmiyazxakii.spin.SteelBallProjectile;
+import com.mzmiyazxakii.spin.SpinSkinManager;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -80,6 +81,7 @@ public final class SteelBallRenderer extends EntityRenderer<SteelBallProjectile>
         Vec3 up = right.cross(forward).normalize();
 
         float phase = (entity.tickCount + partialTick) * 0.42F;
+        int skin = SpinSkinManager.get(entity.getItem());
         VertexConsumer consumer = buffer.getBuffer(RenderType.lightning());
         Matrix4f pose = poseStack.last().pose();
 
@@ -89,39 +91,40 @@ public final class SteelBallRenderer extends EntityRenderer<SteelBallProjectile>
             double sin = Math.sin(angle);
             Vec3 offset = right.scale(cos * 0.29D).add(up.scale(sin * 0.29D));
             drawGreenMote(consumer, pose, (float) offset.x, (float) offset.y,
-                    (float) offset.z, 0.022F);
+                    (float) offset.z, 0.022F, skin);
         }
     }
 
     private static void drawGreenMote(VertexConsumer consumer, Matrix4f pose,
-                                      float x, float y, float z, float halfSize) {
+                                      float x, float y, float z, float halfSize, int skin) {
         float x0 = x - halfSize, x1 = x + halfSize;
         float y0 = y - halfSize, y1 = y + halfSize;
         float z0 = z - halfSize, z1 = z + halfSize;
 
         // Six tiny faces make each mote visible from every viewing angle.
-        moteQuad(consumer, pose, x0,y0,z1, x1,y0,z1, x1,y1,z1, x0,y1,z1);
-        moteQuad(consumer, pose, x1,y0,z0, x0,y0,z0, x0,y1,z0, x1,y1,z0);
-        moteQuad(consumer, pose, x0,y0,z0, x0,y0,z1, x0,y1,z1, x0,y1,z0);
-        moteQuad(consumer, pose, x1,y0,z1, x1,y0,z0, x1,y1,z0, x1,y1,z1);
-        moteQuad(consumer, pose, x0,y1,z1, x1,y1,z1, x1,y1,z0, x0,y1,z0);
-        moteQuad(consumer, pose, x0,y0,z0, x1,y0,z0, x1,y0,z1, x0,y0,z1);
+        moteQuad(consumer, pose, x0,y0,z1, x1,y0,z1, x1,y1,z1, x0,y1,z1, skin);
+        moteQuad(consumer, pose, x1,y0,z0, x0,y0,z0, x0,y1,z0, x1,y1,z0, skin);
+        moteQuad(consumer, pose, x0,y0,z0, x0,y0,z1, x0,y1,z1, x0,y1,z0, skin);
+        moteQuad(consumer, pose, x1,y0,z1, x1,y0,z0, x1,y1,z0, x1,y1,z1, skin);
+        moteQuad(consumer, pose, x0,y1,z1, x1,y1,z1, x1,y1,z0, x0,y1,z0, skin);
+        moteQuad(consumer, pose, x0,y0,z0, x1,y0,z0, x1,y0,z1, x0,y0,z1, skin);
     }
 
     private static void moteQuad(VertexConsumer consumer, Matrix4f pose,
                                  float x0, float y0, float z0,
                                  float x1, float y1, float z1,
                                  float x2, float y2, float z2,
-                                 float x3, float y3, float z3) {
-        moteVertex(consumer, pose, x0, y0, z0);
-        moteVertex(consumer, pose, x1, y1, z1);
-        moteVertex(consumer, pose, x2, y2, z2);
-        moteVertex(consumer, pose, x3, y3, z3);
+                                 float x3, float y3, float z3, int skin) {
+        moteVertex(consumer, pose, x0, y0, z0, skin);
+        moteVertex(consumer, pose, x1, y1, z1, skin);
+        moteVertex(consumer, pose, x2, y2, z2, skin);
+        moteVertex(consumer, pose, x3, y3, z3, skin);
     }
 
     private static void moteVertex(VertexConsumer consumer, Matrix4f pose,
-                                   float x, float y, float z) {
-        consumer.vertex(pose, x, y, z).color(45, 255, 75, 230).endVertex();
+                                   float x, float y, float z, int skin) {
+        if (skin == SpinSkinManager.WRECKING_BALL) consumer.vertex(pose, x, y, z).color(255, 128, 24, 235).endVertex();
+        else consumer.vertex(pose, x, y, z).color(45, 255, 75, 230).endVertex();
     }
 
     @Override

@@ -514,6 +514,12 @@
         "spin:charge_spin": 0.9166666666666666
       },
       "model": "spin:item/steel_ball_spin_11"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1
+      },
+      "model": "spin:item/wrecking_ball"
     }
   ]
 }
