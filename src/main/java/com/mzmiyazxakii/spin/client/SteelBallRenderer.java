@@ -85,8 +85,8 @@ public final class SteelBallRenderer extends EntityRenderer<SteelBallProjectile>
         VertexConsumer consumer = buffer.getBuffer(RenderType.lightning());
         Matrix4f pose = poseStack.last().pose();
 
-        for (int i = 0; i < 4; i++) {
-            float angle = phase + i * ((float) Math.PI * 0.5F);
+        for (int i = 0; i < 6; i++) {
+            float angle = phase + i * ((float) Math.PI * 2.0F / 6.0F);
             double cos = Math.cos(angle);
             double sin = Math.sin(angle);
             Vec3 offset = right.scale(cos * 0.29D).add(up.scale(sin * 0.29D));
