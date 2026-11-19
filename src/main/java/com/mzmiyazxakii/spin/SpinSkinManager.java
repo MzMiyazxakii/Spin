@@ -1,0 +1,3 @@
+package com.mzmiyazxakii.spin;
+import net.minecraft.network.chat.Component;import net.minecraft.world.item.ItemStack;
+public final class SpinSkinManager{public static final int DEFAULT=0,WRECKING_BALL=1;private SpinSkinManager(){}public static int get(ItemStack s){return s.hasTag()?Math.max(0,Math.min(1,s.getTag().getInt("SpinSkin"))):0;}public static void apply(ItemStack s,int skin){if(!s.is(SpinMod.STEEL_BALL.get()))return;int v=Math.max(0,Math.min(1,skin));s.getOrCreateTag().putInt("SpinSkin",v);if(v==1){s.getOrCreateTag().putInt("CustomModelData",1);s.setHoverName(Component.translatable("item.spin.skin.wrecking_ball"));}else{s.getOrCreateTag().remove("CustomModelData");s.resetHoverName();}}}

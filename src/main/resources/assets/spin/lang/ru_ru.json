@@ -1,4 +1,1 @@
-{
-  "item.spin.steel_ball": "Стальной шар",
-  "tooltip.spin.steel_ball": "Зажмите ПКМ до 2 секунд, чтобы зарядить SPIN. Чем сильнее заряд, тем дальше летит и больнее бьёт шар."
-}
+{"item.spin.steel_ball":"Стальной шар","tooltip.spin.steel_ball":"Зажмите ПКМ до 2 секунд, чтобы зарядить SPIN. Чем сильнее заряд, тем дальше летит и больнее бьёт шар.","item.spin.skin.wrecking_ball":"Шар-разрушитель","screen.spin.skins.title":"Скины SPIN","screen.spin.skins.subtitle":"Выбери внешний вид стального шара","screen.spin.skins.default":"Стандартный","screen.spin.skins.wrecking_ball":"Шар-разрушитель","key.spin.open_skins":"Открыть меню скинов","key.categories.spin":"SPIN"}

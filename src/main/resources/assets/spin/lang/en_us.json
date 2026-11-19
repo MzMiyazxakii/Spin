@@ -1,4 +1,1 @@
-{
-  "item.spin.steel_ball": "Steel Ball",
-  "tooltip.spin.steel_ball": "Hold right-click for up to 2 seconds to charge SPIN. A fuller charge throws farther and hits harder."
-}
+{"item.spin.steel_ball":"Steel Ball","tooltip.spin.steel_ball":"Hold right-click for up to 2 seconds to charge SPIN. A fuller charge throws farther and hits harder.","item.spin.skin.wrecking_ball":"Wrecking Ball","screen.spin.skins.title":"SPIN Skins","screen.spin.skins.subtitle":"Choose your Steel Ball appearance","screen.spin.skins.default":"Default","screen.spin.skins.wrecking_ball":"Wrecking Ball","key.spin.open_skins":"Open skin menu","key.categories.spin":"SPIN"}
