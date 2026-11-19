@@ -3,13 +3,15 @@ package com.mzmiyazxakii.spin;
 import com.mzmiyazxakii.spin.client.VerityClientState;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 
-import java.util.function.Supplier;
-
+@Mod.EventBusSubscriber(modid = SpinMod.MOD_ID)
 public final class StandNetwork {
     private static final String VERSION = "1";
     private static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
@@ -30,6 +32,14 @@ public final class StandNetwork {
 
     public static void syncUnlocked(ServerPlayer player) {
         CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new UnlockPacket(true));
+    }
+
+    @SubscribeEvent
+    public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (event.getEntity() instanceof ServerPlayer player
+                && player.getPersistentData().getBoolean("SpinHasVerity")) {
+            syncUnlocked(player);
+        }
     }
 
     public record UnlockPacket(boolean unlocked) {}
