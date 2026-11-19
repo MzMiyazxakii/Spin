@@ -13,6 +13,7 @@ import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -59,6 +60,10 @@ public class SteelBallProjectile extends ThrowableItemProjectile {
             return;
         }
 
+        if (!returning) {
+            applyLightHoming();
+        }
+
         if (!returning && tickCount > 38) {
             beginReturning();
         }
@@ -88,6 +93,59 @@ public class SteelBallProjectile extends ThrowableItemProjectile {
         if (tickCount > 180) {
             discard();
         }
+    }
+
+    /**
+     * Gently bends the ball only when its forward path narrowly misses a living target.
+     * The normal projectile collision remains responsible for actual hits.
+     */
+    private void applyLightHoming() {
+        Vec3 velocity = getDeltaMovement();
+        double speedSqr = velocity.lengthSqr();
+        if (speedSqr < 1.0E-5D) return;
+
+        Vec3 direction = velocity.normalize();
+        double lookAhead = Math.max(1.0D, Math.sqrt(speedSqr) * 1.5D);
+        AABB searchArea = getBoundingBox()
+                .expandTowards(direction.scale(lookAhead))
+                .inflate(0.35D);
+
+        LivingEntity bestTarget = null;
+        double bestAlong = Double.MAX_VALUE;
+
+        for (LivingEntity candidate : level().getEntitiesOfClass(
+                LivingEntity.class,
+                searchArea,
+                entity -> entity.isAlive() && entity != getOwner() && !entity.isSpectator())) {
+            Vec3 toTarget = candidate.position().add(0.0D, candidate.getBbHeight() * 0.5D, 0.0D)
+                    .subtract(position());
+            double along = toTarget.dot(direction);
+            if (along <= 0.0D || along > lookAhead) continue;
+
+            Vec3 closestPointOnPath = position().add(direction.scale(along));
+            // Only assist when the path is already very close to the target's hitbox.
+            if (!candidate.getBoundingBox().inflate(0.25D).contains(closestPointOnPath)) continue;
+
+            if (along < bestAlong) {
+                bestAlong = along;
+                bestTarget = candidate;
+            }
+        }
+
+        if (bestTarget == null) return;
+
+        Vec3 toTarget = bestTarget.position()
+                .add(0.0D, bestTarget.getBbHeight() * 0.5D, 0.0D)
+                .subtract(position());
+        if (toTarget.lengthSqr() < 1.0E-5D) return;
+
+        // Preserve speed and limit the steering contribution so this is aim assist, not homing.
+        double steering = 0.12D;
+        Vec3 adjustedDirection = direction.scale(1.0D - steering)
+                .add(toTarget.normalize().scale(steering))
+                .normalize();
+        setDeltaMovement(adjustedDirection.scale(Math.sqrt(speedSqr)));
+        hasImpulse = true;
     }
 
     private void beginReturning() {
