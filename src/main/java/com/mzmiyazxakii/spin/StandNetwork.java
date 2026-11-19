@@ -1,6 +1,5 @@
 package com.mzmiyazxakii.spin;
 
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -31,7 +30,6 @@ public final class StandNetwork {
     private static final String VERSION = "1";
     private static final int STRIKE_COOLDOWN_TICKS = 200;
     private static final int STRIKE_SHOTS = 4;
-    private static final float DAMAGE_PER_TEAR = 1.75F;
     private static final List<TearShot> TEAR_SHOTS = new ArrayList<>();
     private static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
             new ResourceLocation(SpinMod.MOD_ID, "stand_channel"),
@@ -100,15 +98,11 @@ public final class StandNetwork {
             if (owner != null && owner.isAlive() && found instanceof LivingEntity target && target.isAlive()) {
                 Vec3 from = owner.getEyePosition().add(owner.getLookAngle().scale(0.65D));
                 Vec3 to = target.getBoundingBox().getCenter();
-                Vec3 delta = to.subtract(from);
-                for (int step = 1; step <= 8; step++) {
-                    Vec3 point = from.add(delta.scale(step / 8.0D));
-                    shot.level.sendParticles(ParticleTypes.DRIPPING_WATER,
-                            point.x, point.y, point.z, 2, 0.025D, 0.025D, 0.025D, 0.0D);
-                }
-                shot.level.sendParticles(ParticleTypes.FALLING_WATER,
-                        to.x, to.y, to.z, 5, 0.12D, 0.12D, 0.12D, 0.01D);
-                target.hurt(owner.damageSources().playerAttack(owner), DAMAGE_PER_TEAR);
+                Vec3 direction = to.subtract(from).normalize();
+                VerityTearProjectile tear = new VerityTearProjectile(shot.level, owner);
+                tear.setPos(from);
+                tear.shoot(direction.x, direction.y, direction.z, 1.8F, 0.0F);
+                shot.level.addFreshEntity(tear);
             }
             iterator.remove();
         }
