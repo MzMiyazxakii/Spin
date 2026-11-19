@@ -39,6 +39,13 @@ public class SpinMod {
                             .clientTrackingRange(8)
                             .updateInterval(1)
                             .build(new ResourceLocation(MOD_ID, "steel_ball").toString()));
+    public static final RegistryObject<EntityType<VerityTearProjectile>> VERITY_TEAR_PROJECTILE =
+            ENTITIES.register("verity_tear",
+                    () -> EntityType.Builder.<VerityTearProjectile>of(VerityTearProjectile::new, MobCategory.MISC)
+                            .sized(0.3F, 0.3F)
+                            .clientTrackingRange(8)
+                            .updateInterval(1)
+                            .build(new ResourceLocation(MOD_ID, "verity_tear").toString()));
 
     public static final RegistryObject<SoundEvent> CHARGE = sound("charge");
     public static final RegistryObject<SoundEvent> THROW = sound("spin_throw");
