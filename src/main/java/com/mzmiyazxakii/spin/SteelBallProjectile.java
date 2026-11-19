@@ -1,6 +1,5 @@
 package com.mzmiyazxakii.spin;
 
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -18,12 +17,8 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
-import org.joml.Vector3f;
 
 public class SteelBallProjectile extends ThrowableItemProjectile {
-    private static final DustParticleOptions SPIN_DUST =
-            new DustParticleOptions(new Vector3f(0.08F, 0.95F, 0.16F), 0.78F);
-
     private float damage = 3.0F;
     private boolean returning = false;
     private boolean itemReturnedToOwner = false;
@@ -48,7 +43,7 @@ public class SteelBallProjectile extends ThrowableItemProjectile {
 
     @Override
     protected float getGravity() {
-        return 0.018F;
+        return 0.0F;
     }
 
     @Override
@@ -56,7 +51,6 @@ public class SteelBallProjectile extends ThrowableItemProjectile {
         super.tick();
 
         if (level().isClientSide) {
-            spawnSpinParticles();
             return;
         }
 
@@ -170,30 +164,6 @@ public class SteelBallProjectile extends ThrowableItemProjectile {
             player.getInventory().setChanged();
             level().playSound(null, player.blockPosition(), SpinMod.CATCH.get(),
                     SoundSource.PLAYERS, 0.7F, 1.0F);
-        }
-    }
-
-    private void spawnSpinParticles() {
-        Vec3 movement = getDeltaMovement();
-        Vec3 forward = movement.lengthSqr() > 1.0E-4 ? movement.normalize() : new Vec3(0, 0, 1);
-        Vec3 reference = Math.abs(forward.y) > 0.92 ? new Vec3(1, 0, 0) : new Vec3(0, 1, 0);
-
-        Vec3 right = forward.cross(reference).normalize();
-        Vec3 up = right.cross(forward).normalize();
-        double phase = tickCount * 0.42D;
-
-        for (int i = 0; i < 3; i++) {
-            double angle = phase + i * (Math.PI * 2.0D / 3.0D);
-            double cos = Math.cos(angle);
-            double sin = Math.sin(angle);
-            Vec3 radial = right.scale(cos).add(up.scale(sin));
-            Vec3 offset = radial.scale(0.25D);
-            Vec3 tangent = right.scale(-sin).add(up.scale(cos)).scale(0.025D);
-            Vec3 particleVelocity = forward.scale(0.035D).add(tangent);
-
-            level().addParticle(SPIN_DUST,
-                    getX() + offset.x, getY() + offset.y, getZ() + offset.z,
-                    particleVelocity.x, particleVelocity.y, particleVelocity.z);
         }
     }
 
