@@ -21,7 +21,7 @@ import net.minecraftforge.network.NetworkHooks;
 import com.mzmiyazxakii.spin.network.SpinNetwork;
 
 public class SteelBallProjectile extends ThrowableItemProjectile {
-    public enum Mode { NORMAL, FAST, CURVE, BOUNCY, DRILL }
+    public enum Mode { NORMAL, FAST, CURVE, BOUNCY, DRILL, DRILL_FAST, DRILL_CURVE }
     private Mode mode = Mode.NORMAL;
     private float damage = 3.0F;
     private boolean returning = false;
@@ -45,7 +45,7 @@ public class SteelBallProjectile extends ThrowableItemProjectile {
             setDeltaMovement(getDeltaMovement().add(side));
         }
         if (mode == Mode.BOUNCY && !returning && tickCount > 65) returning = true;
-        if (mode != Mode.BOUNCY && !returning && tickCount > (mode == Mode.DRILL ? 24 : 38)) returning = true;
+        if (mode != Mode.BOUNCY && !returning && tickCount > (isDrillMode() ? 24 : 38)) returning = true;
         if (returning) {
             Entity owner = getOwner();
             if (owner == null || !owner.isAlive()) { discard(); return; }
@@ -66,6 +66,8 @@ public class SteelBallProjectile extends ThrowableItemProjectile {
         if (tickCount > 180) discard();
     }
 
+    private boolean isDrillMode() { return mode == Mode.DRILL || mode == Mode.DRILL_FAST || mode == Mode.DRILL_CURVE; }
+
     @Override protected void onHit(HitResult result) {
         if (level().isClientSide || returning) return;
         if (result.getType() == HitResult.Type.ENTITY) {
@@ -73,7 +75,7 @@ public class SteelBallProjectile extends ThrowableItemProjectile {
             Entity owner = getOwner();
             if (target != owner && target instanceof LivingEntity living) {
                 living.hurt(damageSources().thrown(this, owner), damage);
-                if (mode == Mode.DRILL) living.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 50, 1));
+                if (isDrillMode()) living.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 50, 1));
                 if (owner instanceof Player player) {
                     player.getPersistentData().putFloat("spin_charge", Math.min(100, player.getPersistentData().getFloat("spin_charge") + 8));
                     SpinNetwork.syncCharge(player);
