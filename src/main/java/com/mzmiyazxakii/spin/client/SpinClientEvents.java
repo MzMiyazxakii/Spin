@@ -68,6 +68,15 @@ public class SpinClientEvents {
     }
 
     @SubscribeEvent
+    public static void registerVerityHud(RegisterGuiOverlaysEvent event) {
+        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "verity_name", (gui, graphics, partialTick, screenWidth, screenHeight) -> {
+            Minecraft minecraft = Minecraft.getInstance();
+            if (minecraft.player == null || minecraft.options.hideGui || !VerityClientState.isVisible()) return;
+            graphics.drawString(minecraft.font, Component.literal("VERITY"), 8, 8, 0xFFFFD52E, true);
+        });
+    }
+
+    @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(SpinMod.STEEL_BALL_PROJECTILE.get(), SteelBallRenderer::new);
     }
