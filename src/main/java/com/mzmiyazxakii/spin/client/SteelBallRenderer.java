@@ -38,10 +38,10 @@ public final class SteelBallRenderer extends EntityRenderer<SteelBallProjectile>
 
             poseStack.pushPose();
             poseStack.scale(0.5F, 0.5F, 0.5F);
-            // Roll around local Z first, then align that axis with the current velocity.
-            poseStack.mulPose(Axis.ZP.rotationDegrees(roll));
-            poseStack.mulPose(Axis.XP.rotationDegrees(pitch));
+            // Apply the local roll first, then pitch and yaw to align the ball with its flight vector.
             poseStack.mulPose(Axis.YP.rotationDegrees(-yaw));
+            poseStack.mulPose(Axis.XP.rotationDegrees(pitch));
+            poseStack.mulPose(Axis.ZP.rotationDegrees(roll));
 
             itemRenderer.renderStatic(
                     entity.getItem(),
