@@ -1,0 +1,5 @@
+{
+  "specs.spin.throw":{"sounds":["spin:specs/spin/throw"]},
+  "specs.spin.charge":{"sounds":["spin:specs/spin/charge"]},
+  "specs.spin.spin_imbued_punch":{"sounds":["spin:specs/spin/spin_imbued_punch"]}
+}
