@@ -13,7 +13,7 @@ public final class SpinSounds {
     public static final RegistryObject<SoundEvent> CHARGE = register("specs.spin.charge");
     public static final RegistryObject<SoundEvent> PUNCH = register("specs.spin.spin_imbued_punch");
     private static RegistryObject<SoundEvent> register(String name) {
-        return SOUNDS.register(name.substring(name.lastIndexOf('.') + 1), () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(SpinMod.MOD_ID, name)));
+        return SOUNDS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(SpinMod.MOD_ID, name)));
     }
     private SpinSounds() {}
 }
