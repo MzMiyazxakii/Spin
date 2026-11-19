@@ -54,8 +54,8 @@ public class SteelBallItem extends Item {
         SteelBallProjectile ball = new SteelBallProjectile(level, player);
         ball.setItem(new ItemStack(this));
         ball.setDamage(3.0F + power * 4.0F);
-        ball.shootFromRotation(player, player.getXRot() - 7.0F, player.getYRot(),
-                0.0F, 1.25F + power, 0.8F);
+        ball.shootFromRotation(player, player.getXRot(), player.getYRot(),
+                0.0F, 1.25F + power, 0.0F);
         level.addFreshEntity(ball);
 
         level.playSound(null, player.blockPosition(), SpinMod.THROW.get(),
