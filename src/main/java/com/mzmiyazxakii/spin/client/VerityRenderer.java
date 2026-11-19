@@ -3,16 +3,13 @@ package com.mzmiyazxakii.spin.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mzmiyazxakii.spin.SpinMod;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.joml.Matrix4f;
-import org.joml.Vector3f;
 
 @Mod.EventBusSubscriber(modid = SpinMod.MOD_ID, value = Dist.CLIENT)
 public final class VerityRenderer {
@@ -20,32 +17,11 @@ public final class VerityRenderer {
 
     @SubscribeEvent
     public static void renderVerity(RenderPlayerEvent.Post event) {
-        Minecraft minecraft = Minecraft.getInstance();
-        if (minecraft.level == null || !VerityClientState.isVisible()) return;
+        if (!VerityClientState.isVisible()) return;
 
         float partialTick = event.getPartialTick();
         float progress = VerityClientState.getSummonProgress(partialTick);
         float time = (event.getEntity().tickCount + partialTick) * 0.075F;
-
-        // A soft golden aura: a few tiny, low-opacity-looking dust motes around Verity.
-        if (event.getEntity().tickCount % 3 == 0) {
-            double yaw = Math.toRadians(event.getEntity().getYRot());
-            double rightX = Math.cos(yaw);
-            double rightZ = -Math.sin(yaw);
-            double backX = Math.sin(yaw);
-            double backZ = -Math.cos(yaw);
-            double centerX = event.getEntity().getX() + rightX * 0.43D + backX * -0.34D;
-            double centerY = event.getEntity().getY() + 1.62D;
-            double centerZ = event.getEntity().getZ() + rightZ * 0.43D + backZ * -0.34D;
-            DustParticleOptions yellowDust = new DustParticleOptions(new Vector3f(1.0F, 0.82F, 0.22F), 0.48F);
-            for (int i = 0; i < 2; i++) {
-                double ox = (event.getEntity().getRandom().nextDouble() - 0.5D) * 0.48D;
-                double oy = (event.getEntity().getRandom().nextDouble() - 0.5D) * 0.62D;
-                double oz = (event.getEntity().getRandom().nextDouble() - 0.5D) * 0.42D;
-                minecraft.level.addParticle(yellowDust, centerX + ox, centerY + oy, centerZ + oz,
-                        0.0D, 0.008D, 0.0D);
-            }
-        }
 
         // Verity emerges from the player's torso, then settles behind the right shoulder.
         double startX = 0.0D;
