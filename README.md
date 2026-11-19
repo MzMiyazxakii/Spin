@@ -12,7 +12,7 @@ Standalone Forge mod port based on the supplied Spin 1.1.2 archive. The project 
 - The SPIN gauge appears in the lower-left corner while charging and fills over two seconds.
 - A longer charge increases both throw speed/range and damage.
 - The held Steel Ball rotates while it is being charged.
-- The thrown Steel Ball leaves an orbiting green particle effect and spins along its flight direction.
+- The thrown Steel Ball flies straight along its launch direction without gravity, spins along its flight direction, and has four green motes orbiting its axis (rendered around the ball without a trailing particle stream).
 - The ball gets subtle aim assistance when its path narrowly misses a living target; this is limited to targets already very close to its flight path.
 - The ball damages the first living entity it hits, then returns exactly one Steel Ball to its owner.
 - Throwing consumes one Steel Ball in all game modes, including Creative.
