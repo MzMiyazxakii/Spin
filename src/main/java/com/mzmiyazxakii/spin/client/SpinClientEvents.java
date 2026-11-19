@@ -2,7 +2,7 @@ package com.mzmiyazxakii.spin.client;
 
 import com.mzmiyazxakii.spin.SpinMod;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.client.renderer.entity.EntityRenderersEvent;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
