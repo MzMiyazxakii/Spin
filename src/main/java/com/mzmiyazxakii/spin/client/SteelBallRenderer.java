@@ -6,12 +6,12 @@ import com.mzmiyazxakii.spin.SteelBallProjectile;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.phys.Vec3;
 
 /**
  * Renders the Steel Ball aligned with its flight direction and rolls it around
@@ -30,16 +30,18 @@ public final class SteelBallRenderer extends EntityRenderer<SteelBallProjectile>
     public void render(SteelBallProjectile entity, float entityYaw, float partialTick,
                        PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
         if (!entity.getItem().isEmpty()) {
-            float yaw = Mth.rotLerp(partialTick, entity.yRotO, entity.getYRot());
-            float pitch = Mth.lerp(partialTick, entity.xRotO, entity.getXRot());
+            Vec3 velocity = entity.getDeltaMovement();
+            double horizontalSpeed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);
+            float yaw = (float) (Math.atan2(velocity.x, velocity.z) * (180.0D / Math.PI));
+            float pitch = (float) (Math.atan2(-velocity.y, horizontalSpeed) * (180.0D / Math.PI));
             float roll = (entity.tickCount + partialTick) * 28.0F;
 
             poseStack.pushPose();
             poseStack.scale(0.5F, 0.5F, 0.5F);
-            // Local Z is the ball's forward axis: apply roll first, then aim it along the trajectory.
-            poseStack.mulPose(Axis.YP.rotationDegrees(-yaw));
-            poseStack.mulPose(Axis.XP.rotationDegrees(pitch));
+            // Roll around local Z first, then align that axis with the current velocity.
             poseStack.mulPose(Axis.ZP.rotationDegrees(roll));
+            poseStack.mulPose(Axis.XP.rotationDegrees(pitch));
+            poseStack.mulPose(Axis.YP.rotationDegrees(-yaw));
 
             itemRenderer.renderStatic(
                     entity.getItem(),
