@@ -37,10 +37,10 @@ public class SteelBallProjectile extends ThrowableItemProjectile {
     @Override public void tick() {
         super.tick();
         if (level().isClientSide) {
-            if (tickCount % 2 == 0) level().addParticle(mode == Mode.DRILL ? ParticleTypes.CRIT : ParticleTypes.ELECTRIC_SPARK, getX(), getY(), getZ(), 0, 0.015, 0);
+            if (tickCount % 2 == 0) level().addParticle(isDrillMode() ? ParticleTypes.CRIT : ParticleTypes.ELECTRIC_SPARK, getX(), getY(), getZ(), 0, 0.015, 0);
             return;
         }
-        if (mode == Mode.CURVE && !returning && tickCount < 28) {
+        if ((mode == Mode.CURVE || mode == Mode.DRILL_CURVE || mode == Mode.BOUNCY) && !returning && tickCount < 28) {
             Vec3 side = getDeltaMovement().cross(new Vec3(0, 1, 0)).normalize().scale(0.022);
             setDeltaMovement(getDeltaMovement().add(side));
         }
